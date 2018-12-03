@@ -25,8 +25,8 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
     private String videoId = "";
     private boolean isFullScreen = false;
     private boolean goFullScreen = false;
-
-
+    private int playerStyle = 0;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,7 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
         API_KEY = getIntent().getStringExtra("api");
         videoId = getIntent().getStringExtra("videoId");
         goFullScreen = getIntent().getBooleanExtra("fullScreen", false);
+        playerStyle = getIntent().getIntExtra("playerStyle", 0);
 
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(API_KEY, this);
@@ -51,6 +52,7 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
             player.setManageAudioFocus(true);
 
             player.setFullscreen(goFullScreen);
+            player.setPlayerStyle(getPlayerStyle());
 
             if(goFullScreen) {
                 isFullScreen = goFullScreen;
@@ -102,5 +104,13 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private YouTubePlayer.PlayerStyle getPlayerStyle() {
+        switch(playerStyle) {
+            case 0: return YouTubePlayer.PlayerStyle.DEFAULT;
+            case 1: return YouTubePlayer.PlayerStyle.CHROMELESS;
+            default: return YouTubePlayer.PlayerStyle.MINIMAL;
+        }
     }
 }

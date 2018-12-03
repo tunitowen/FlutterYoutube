@@ -35,12 +35,14 @@ public class FlutterYoutubePlugin implements MethodCallHandler {
       String apiKey = call.argument("api");
       String videoId = call.argument("id");
       boolean fullScreen = call.argument("fullScreen");
+      int playerStyle = call.argument("playerType");
 
 
       Intent playerIntent = new Intent(activity, PlayerActivity.class);
       playerIntent.putExtra("api", apiKey);
       playerIntent.putExtra("videoId", videoId);
       playerIntent.putExtra("fullScreen", fullScreen);
+      playerIntent.putExtra("playerType", playerStyle);
 
       activity.startActivity(playerIntent);
     } else {

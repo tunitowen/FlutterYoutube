@@ -27,7 +27,8 @@ class FlutterYoutube {
   static void playYoutubeVideoByUrl(
       {@required String apiKey,
       @required String videoUrl,
-      bool fullScreen = false}) {
+      bool fullScreen = false,
+      PlayerType playerType = PlayerType.DEFAULT}) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
     }
@@ -45,7 +46,8 @@ class FlutterYoutube {
     final Map<String, dynamic> params = <String, dynamic>{
       'api': apiKey,
       'id': id,
-      'fullScreen': fullScreen
+      'fullScreen': fullScreen,
+      'playerType': playerType.index
     };
     _channel.invokeMethod('playYoutubeVideo', params);
   }
@@ -53,7 +55,8 @@ class FlutterYoutube {
   static void playYoutubeVideoById(
       {@required String apiKey,
       @required String videoId,
-      bool fullScreen = false}) {
+      bool fullScreen = false,
+      PlayerType playerType = PlayerType.DEFAULT}) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
     }
@@ -65,8 +68,13 @@ class FlutterYoutube {
     final Map<String, dynamic> params = <String, dynamic>{
       'api': apiKey,
       'id': videoId,
-      'fullScreen': fullScreen
+      'fullScreen': fullScreen,
+      'playerType': playerType.index
     };
     _channel.invokeMethod('playYoutubeVideo', params);
   }
+}
+
+enum PlayerType {
+  DEFAULT, CHROMELESS, MINIMAL
 }
