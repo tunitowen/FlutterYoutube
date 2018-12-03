@@ -54,6 +54,8 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
             player.setFullscreen(goFullScreen);
             player.setPlayerStyle(getPlayerStyle());
 
+            Log.d("FLUTTER_YOUTUBE","Sending player type: " + getPlayerStyle().name());
+
             if(goFullScreen) {
                 isFullScreen = goFullScreen;
             }
