@@ -28,7 +28,7 @@ class FlutterYoutube {
       {@required String apiKey,
       @required String videoUrl,
       bool fullScreen = false,
-      PlayerType playerType = PlayerType.DEFAULT}) {
+      PlayerStyle playerStyle = PlayerStyle.DEFAULT}) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
     }
@@ -47,7 +47,7 @@ class FlutterYoutube {
       'api': apiKey,
       'id': id,
       'fullScreen': fullScreen,
-      'playerType': playerType.index
+      'playerStyle': playerStyle.index
     };
     _channel.invokeMethod('playYoutubeVideo', params);
   }
@@ -56,7 +56,7 @@ class FlutterYoutube {
       {@required String apiKey,
       @required String videoId,
       bool fullScreen = false,
-      PlayerType playerType = PlayerType.DEFAULT}) {
+      PlayerStyle playerStyle = PlayerStyle.DEFAULT}) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
     }
@@ -69,12 +69,12 @@ class FlutterYoutube {
       'api': apiKey,
       'id': videoId,
       'fullScreen': fullScreen,
-      'playerType': playerType.index
+      'playerStyle': playerStyle.index
     };
     _channel.invokeMethod('playYoutubeVideo', params);
   }
 }
 
-enum PlayerType {
+enum PlayerStyle {
   DEFAULT, CHROMELESS, MINIMAL
 }
